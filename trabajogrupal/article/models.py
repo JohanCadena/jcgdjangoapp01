@@ -27,6 +27,19 @@ class Articulo(models.Model):
 
 class Venta(models.Model):
     name = models.CharField(max_length=255, verbose_name='Nombre Cliente')
+    stock = models.CharField(max_length=300, verbose_name='Piezas')
+    total = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='Total')
+
+    def __str__(self):
+        return "{0}".format(self.name)
+
+    class Meta:
+        verbose_name= 'Detalle de Venta'
+        verbose_name_plural= 'Detalle de Venta'
+
+        
+class Carrito(models.Model):
+    name = models.CharField(max_length=255, verbose_name='Nombre Cliente')
     articulo_id = models.ForeignKey(Articulo, on_delete=models.CASCADE, verbose_name='Articulo') 
     stock = models.CharField(max_length=300, verbose_name='Piezas')
     price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='Precio')
@@ -36,5 +49,5 @@ class Venta(models.Model):
         return "{0}".format(self.name)
 
     class Meta:
-        verbose_name= 'Venta'
-        verbose_name_plural= 'Nueva Venta'
+        verbose_name= 'Carrito'
+        verbose_name_plural= 'Nuevo Carrito'
